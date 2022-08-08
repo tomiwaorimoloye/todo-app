@@ -17,7 +17,7 @@ theme.addEventListener('click', (e) => {
 })
 
 let todoList = JSON.parse(localStorage.getItem('todos')) || [
-  /*{
+  {
     text: 'Complete online javascript course',
     isChecked: true,
   },
@@ -40,7 +40,7 @@ let todoList = JSON.parse(localStorage.getItem('todos')) || [
   {
     text: 'Complete Todo app of frontendmentor',
     isChecked: false,
-  },*/
+  },
 ]
 
 showExistingTodos(todoList, 'all')
