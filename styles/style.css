@@ -24,21 +24,28 @@ html {
 	--very-light-gray: hsl(0, 0%, 98%);
 	--very-light-grayish-blue: hsl(236, 33%, 92%);
 	--light-grayish-blue: hsl(233, 11%, 84%);
-	--dark-grayish-blue: hsl(236, 9%, 61%);
-	--very-dark-grayish-blue: hsl(235, 19%, 35%);
-
-	/* dark theme */
-	--very-dark-blue: hsl(235, 21%, 11%);
-	--very-dark-desaturated-blue: hsl(235, 24%, 19%);
-	--light-grayish-blue: hsl(234, 39%, 85%);
 	--light-grayish-blue-hover: hsl(236, 33%, 92%);
+	--dark-grayish-blue: hsl(236, 9%, 61%);
+	--very-dark-blue: hsl(235, 21%, 11%);
+	--very-dark-grayish-blue: hsl(235, 19%, 35%);
+	--very-dark-grayish-blue-lighter: hsl(237, 14%, 26%);
+	--very-dark-desaturated-blue: hsl(235, 24%, 19%);
+}
+
+.dark {
+	/* dark theme */
+	--light-grayish-blue: hsl(234, 39%, 85%);
 	--dark-grayish-blue: hsl(234, 11%, 52%);
 	--very-dark-grayish-blue: hsl(233, 14%, 35%);
-	--very-dark-grayish-blue: hsl(237, 14%, 26%);
 }
 
 body {
+  position: relative;
 	min-height: 100vh;
+}
+
+body.dark {
+  background-color: var(--very-dark-blue);
 }
 
 li {
@@ -63,7 +70,7 @@ header {
 /* main */
 main {
 	position: absolute;
-	min-width: 540px;
+	width: 540px;
 	top: 75px;
 	left: 50%;
 	transform: translateX(-50%);
@@ -87,6 +94,10 @@ p {
 	color: var(--very-dark-grayish-blue);
 }
 
+.dark p {
+  color: var(--light-grayish-blue);
+}
+
 .theme-icon {
 	width: 30px;
 	height: 30px;
@@ -98,46 +109,129 @@ p {
 	background-color: white;
 	border-radius: 5px;
 	padding: 20px;
-	gap: 25px;
+  box-shadow:
+    0px 1.9px 3.4px rgba(0, 0, 0, 0),
+    0px 5.4px 9.4px rgba(0, 0, 0, -0.007),
+    0px 13px 22.6px rgba(0, 0, 0, 0.007),
+    0px 43px 75px rgba(0, 0, 0, 0.08)
+  ;
 }
 
+.box > :first-child {
+  margin-right: 25px;
+}
+
+.dark .box {
+  background-color: var(--very-dark-desaturated-blue);
+}
+
+/* circle */
 .circle {
 	width: 25px;
 	height: 25px;
 	border-radius: 100%;
 	border: 1px solid var(--very-light-grayish-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.dark .circle {
+  border-color: var(--very-dark-grayish-blue);
+}
+
+.todo.checked .circle {
+  background: linear-gradient(
+		to bottom right,
+		hsl(192, 100%, 67%),
+		hsl(280, 87%, 65%)
+  );
+  border-width: 0;
+}
+
+.circle > img {
+  display: none;
+}
+
+.checked .circle > img {
+  display: inline;
+}
+
 
 #input {
 	border: none;
 	background-color: transparent;
 	outline: none;
 	color: var(--very-dark-grayish-blue);
+  caret-color: var(--bright-blue);
+  width: 90%;
+}
+
+.dark #input {
+  color: var(--light-grayish-blue);
 }
 
 #input::placeholder {
 	color: var(--dark-grayish-blue);
 }
 
+.cross {
+  display: none;
+  margin-left: auto;
+}
+
 .todos {
 	background-color: white;
 	border-radius: 5px;
 	margin-top: 25px;
-}
-
-.todos .todo {
-	border-bottom: 1px solid var(--very-light-grayish-blue);
-	border-radius: 0;
+  box-shadow:
+    0px 1.9px 3.4px rgba(0, 0, 0, 0),
+    0px 5.4px 9.4px rgba(0, 0, 0, -0.007),
+    0px 13px 22.6px rgba(0, 0, 0, 0.007),
+    0px 43px 75px rgba(0, 0, 0, 0.08)
+  ;
 }
 
 .todo {
+	border-bottom: 1px solid var(--very-light-grayish-blue);
+	border-radius: 0;
 	padding: 20px;
 }
 
+.todo.checked p {
+  color: var(--light-grayish-blue);
+  text-decoration: line-through;
+}
+
+.dark .todo.checked p {
+  color: var(--dark-grayish-blue);
+  opacity: 0.5;
+}
+
+.dark .todo {
+  border-bottom-color: var(--very-dark-grayish-blue);
+}
+
+.todo > *:not(p):hover {
+  cursor: pointer;
+}
+
+.todo p {
+  cursor: grab;
+}
+
+.todo:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius:5px;
+}
+
 .todos__footer {
+  position: relative;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .todos__filter {
@@ -167,8 +261,138 @@ small {
 	color: var(--dark-grayish-blue);
 }
 
+@media screen and (min-width: 600px) {
+  .todo:not(.checked) .circle:hover {
+    border-style: double;
+    border-color: transparent;
+    background-image: linear-gradient(white, white),
+                      linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+
+  .dark .todo:not(.checked) .circle:hover {
+    background-image: linear-gradient(var(--very-dark-desaturated-blue), var(--very-dark-desaturated-blue)),
+                      linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  }
+
+  .todo:hover .cross {
+    display: inline;
+  }
+
+  .todos__filter label:not(.current):hover,
+  #clear-button small:hover {
+    color: var(--very-dark-grayish-blue);
+    cursor: pointer;
+  }
+
+  .dark .todos__filter label:not(.current):hover,
+  .dark #clear-button small:hover {
+    color: var(--light-grayish-blue);
+  }
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+}
+
 .footnote {
 	display: block;
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
 	text-align: center;
-	margin-top: 50px;
 }
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+
+  header {
+    background-image: url(../images/bg-mobile-light.jpg);
+    max-height: 200px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .theme-icon {
+    height: 20px;
+    width: 20px;
+  }
+
+  main {
+    max-width: 325px;
+    top: 45px;
+  }
+
+  .title {
+    margin-bottom: 30px;
+  }
+
+  .circle {
+    width: 20px;
+    height: 20px;
+  }
+
+  .box {
+    padding: 15px 20px;
+  }
+
+  .box > :first-child {
+    margin-right: 10px;
+  }
+
+  .cross {
+    display: inline;
+  }
+
+  .todos {
+    margin-top: 15px;
+  }
+
+  .cross {
+    height: 15px;
+    width: auto;
+  }
+
+  .todos__filter {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    gap: 25px;
+    background-color: inherit;
+    padding: 20px;
+    width: 100%;
+    box-shadow:
+      0px 1.9px 3.4px rgba(0, 0, 0, 0),
+      0px 5.4px 9.4px rgba(0, 0, 0, -0.007),
+      0px 13px 22.6px rgba(0, 0, 0, 0.007),
+      0px 43px 75px rgba(0, 0, 0, 0.08)
+    ;
+  }
+
+  .todos__filter label {
+    font-size: 1rem;
+  }
+
+  .footnote {
+    bottom: -120px;
+  }
+}
+
