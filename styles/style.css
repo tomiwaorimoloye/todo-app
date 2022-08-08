@@ -42,6 +42,7 @@ html {
 body {
   position: relative;
 	min-height: 100vh;
+  transition: all 500ms ease;
 }
 
 body.dark {
@@ -101,6 +102,7 @@ p {
 .theme-icon {
 	width: 30px;
 	height: 30px;
+  cursor: pointer;
 }
 
 .box {
@@ -180,7 +182,7 @@ p {
   margin-left: auto;
 }
 
-.todos {
+.todos__container {
 	background-color: white;
 	border-radius: 5px;
 	margin-top: 25px;
@@ -239,6 +241,10 @@ p {
 	gap: 20px;
 }
 
+input[type="radio"]:checked + label {
+  color: var(--bright-blue);
+}
+
 .todos__filter label {
 	font-size: 0.8rem;
 	color: var(--dark-grayish-blue);
@@ -247,10 +253,6 @@ p {
 
 .todos__filter label:hover {
 	cursor: pointer;
-}
-
-.todos__filter label.current {
-	color: var(--bright-blue);
 }
 
 .todos__filter input {
@@ -330,6 +332,7 @@ small {
   .theme-icon {
     height: 20px;
     width: 20px;
+    cursor: pointer;
   }
 
   main {
@@ -358,7 +361,7 @@ small {
     display: inline;
   }
 
-  .todos {
+  .todos__conainer {
     margin-top: 15px;
   }
 
