@@ -16,32 +16,7 @@ theme.addEventListener('click', (e) => {
   console.log(e.target.src)
 })
 
-let todoList = JSON.parse(localStorage.getItem('todos')) || [
-  /*{
-    text: 'Complete online javascript course',
-    isChecked: true,
-  },
-  {
-    text: 'Jog around the park 3x',
-    isChecked: false,
-  },
-  {
-    text: '10 minutes meditarian',
-    isChecked: false,
-  },
-  {
-    text: 'Read for 1 hour',
-    isChecked: false,
-  },
-  {
-    text: 'Pick up groceries',
-    isChecked: false,
-  },
-  {
-    text: 'Complete Todo app of frontendmentor',
-    isChecked: false,
-  },*/
-]
+let todoList = JSON.parse(localStorage.getItem('todos')) || []
 
 showExistingTodos(todoList, 'all')
 
