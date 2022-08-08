@@ -11,8 +11,8 @@ const todoCount = document.querySelector('#todo-count')
 
 theme.addEventListener('click', (e) => {
   document.body.classList.toggle('dark')
-  if (e.target.src.includes('/todo-app/images/icon-moon.svg')) e.target.src = 'https://github.com/tomiwaorimoloye/todo-app/images/icon-sun.svg'
-  else e.target.src = 'https://github.com/tomiwaorimoloye/todo-app/images/icon-moon.svg'
+  if (e.target.src.includes('/todo-app/images/icon-moon.svg')) e.target.src = 'https://github.io/tomiwaorimoloye/todo-app/images/icon-sun.svg'
+  else e.target.src = 'https://github.io/tomiwaorimoloye/todo-app/images/icon-moon.svg'
   console.log(e.target.src)
 })
 
