@@ -68,6 +68,10 @@ header {
 	max-height: 500px;
 }
 
+.dark header {
+  background-image: url(../images/bg-desktop-dark.jpg);
+}
+
 /* main */
 main {
 	position: absolute;
@@ -319,6 +323,10 @@ small {
   header {
     background-image: url(../images/bg-mobile-light.jpg);
     max-height: 200px;
+  }
+
+  .dark header {
+    background-image: url(../images/bg-mobile-dark.jpg);
   }
 
   h1 {
